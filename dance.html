@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dance for Change | Huit Fambo Foundation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--hf-yellow:#f9d342;--hf-dark:#0a0a0a;--hf-light:#f7f5f2;--hf-gray:#2c2c2c}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Poppins',sans-serif;background:linear-gradient(180deg,#fff,#f6f6f4);color:var(--hf-dark)}
+    header{background:#050505;color:#fff;padding:1rem}
+    .logo{display:flex;align-items:center;gap:.5rem}
+    nav{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+    .hero{max-width:1200px;margin:2rem auto;padding:3rem;background:linear-gradient(135deg,#0f1720 0%, rgba(15,23,32,.85) 100%), url('13.jpg') center/cover;border-radius:18px;color:#fff;position:relative;overflow:hidden}
+    .hero h1{margin:0 0 1rem;font-size:2rem}
+    /* interactive hero styles */
+    .hero.interactive-hero{position:relative;padding:2.5rem}
+    .hero .hero-slides{position:relative;min-height:140px}
+    .hero .slide{position:absolute;inset:0;opacity:0;transform:translateY(6px);transition:opacity .45s ease, transform .45s ease;display:flex;flex-direction:column;justify-content:center}
+    .hero .slide.active{opacity:1;transform:translateY(0)}
+    .hero-controls{display:flex;gap:12px;align-items:center;justify-content:center;margin-top:1rem}
+    .hero-controls button{background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff;border-radius:8px;padding:6px 10px;cursor:pointer}
+    .hero-dots{display:flex;gap:8px}
+    .hero-dots button{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.3);border:none}
+    .hero-dots button.active{background:var(--hf-yellow)}
+    .content{max-width:1000px;margin:2rem auto;padding:1rem}
+    .lead-illustration{width:100%;height:220px;border-radius:14px;background:linear-gradient(135deg,#ffd966,#f9d342);display:grid;place-items:center;margin-bottom:1rem}
+    .lead-illustration svg{width:60%;height:auto;opacity:.95}
+    .section{background:#fff;border-radius:14px;padding:1.5rem;border:1px solid #eee;box-shadow:0 10px 30px rgba(2,6,23,.06)}
+    .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-top:1rem}
+    .team-card{background:var(--hf-light);padding:1rem;border-radius:12px;text-align:center}
+    .team-role{font-size:.8rem;color:var(--hf-gray);text-transform:uppercase;margin-bottom:.4rem}
+    a.btn{display:inline-block;margin-top:1rem;padding:.7rem 1.25rem;background:var(--hf-yellow);color:var(--hf-dark);border-radius:999px;text-decoration:none;font-weight:700}
+    @media(max-width:600px){.hero{padding:1.5rem}.lead-illustration{height:160px}}
+    /* team images and contact form styling */
+    .team-card img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: .6rem;
+      border: 4px solid var(--hf-yellow);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      background: #fff;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .contact-section{max-width:900px;margin:2rem auto;padding:1.5rem}
+    .contact-form{display:grid;gap:.6rem;background:#fff;padding:1rem;border-radius:12px;border:1px solid #eee}
+    .contact-form input,.contact-form textarea{padding:.75rem;border:1px solid #e6e6e6;border-radius:8px;font-family:inherit}
+    .contact-form button{background:var(--hf-yellow);border:none;padding:.75rem 1rem;border-radius:10px;font-weight:700;cursor:pointer}
+    /* Rectangular Card Gallery Styles (from index.html) */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .gallery-item {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      background: #fff;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s;
+      border: none;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+    .gallery-item img, .gallery-item video {
+      width: 100%;
+      height: 100%;
+      min-height: 220px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      display: block;
+    }
+    .caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.85) 100%);
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-align: left;
+    }
+    @media (max-width: 768px) {
+      .gallery { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0.75rem 1.25rem;">
+      <div class="logo" style="display:flex;align-items:center;gap:.6rem;color:#fff">
+        <img src="logo.png" alt="logo" style="width:44px;height:44px;border-radius:50%;border:3px solid var(--hf-yellow);background:#000;padding:2px">
+        <span style="font-weight:700;color:#fff">Huit Fambo Foundation</span>
+      </div>
+      <div class="nav-links" style="display:flex;gap:1rem;">
+        <a href="index.html" style="color:#fff;text-decoration:none;font-weight:600">Home</a>
+        <a href="About.html" style="color:#fff;text-decoration:none;font-weight:600">About</a>
+        <a href="WhatWeDo.html" style="color:#fff;text-decoration:none;font-weight:600">What We Do</a>
+        <a href="Impact.html" style="color:#fff;text-decoration:none;font-weight:600">Impact</a>
+        <a href="library.html" style="color:#fff;text-decoration:none;font-weight:600">Library</a>
+        <a href="dance.html" style="color:#fff;text-decoration:none;font-weight:600">Dance</a>
+        <a href="waste.html" style="color:#fff;text-decoration:none;font-weight:600">Waste</a>
+        <a href="Donate.html" style="color:#fff;text-decoration:none;font-weight:600">Donate</a>
+        <a href="index.html#contact" style="color:#fff;text-decoration:none;font-weight:600">Contact</a>
+      </div>
+    <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation" style="background:transparent;border:none;color:#fff;font-size:20px;cursor:pointer">☰</button>
+    </nav>
+  <style>
+    /* Shared site styles copied from WhatWeDo.html for consistent layout */
+    :root {
+      --hf-yellow: #f9d342;
+      --hf-dark: #0a0a0a;
+      --hf-light: #f7f5f2;
+      --hf-gray: #2c2c2c;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--hf-light);
+      color: var(--hf-dark);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    header { position: sticky; top: 0; z-index: 100; background: rgba(10,10,10,0.95); border-bottom: 3px solid var(--hf-yellow); backdrop-filter: blur(6px); }
+
+    nav { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display:flex; justify-content:space-between; align-items:center; color:#fff }
+
+    .logo { display:flex; align-items:center; gap:0.5rem }
+
+    .logo-badge { width:48px; height:48px; border-radius:50%; border:3px solid var(--hf-yellow); display:grid; place-items:center; overflow:hidden; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); background:#000 }
+
+    .logo-badge img { width:100%; height:100%; object-fit:cover }
+
+    .nav-links { display:flex; gap:1.25rem; text-transform:uppercase; font-size:0.85rem; letter-spacing:0.05em }
+
+    .btn { display:inline-flex; align-items:center; justify-content:center; padding:0.75rem 1.75rem; background:var(--hf-yellow); color:var(--hf-dark); font-weight:700; border-radius:999px; border:none; cursor:pointer }
+
+    .hero { position:relative; min-height:55vh; padding:4rem 2rem; display:grid; place-items:center; color:#fff; text-align:center; background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.6)), url('Cdance.png') center/cover; }
+
+    .hero h1 { font-size: clamp(2rem, 4vw, 3rem); margin:0 0 1rem }
+
+    .section { max-width:1200px; margin:0 auto; padding:3rem 2rem }
+
+    /* Ensure specific section text is pure black when requested */
+    .section.black-text,
+    .section.black-text h2,
+    .section.black-text h3,
+    .section.black-text p,
+    .section.black-text li { color: #000 }
+
+    .section h2 { text-transform:uppercase; letter-spacing:0.2em; color:var(--hf-gray); font-size:1rem }
+
+    .section h3 { font-size:1.8rem; margin-bottom:1rem }
+
+    .content-card { background:#fff; border:1px solid #ececec; border-radius:18px; padding:1.5rem }
+
+    .grid { display:grid; gap:1.5rem }
+    .grid-2 { grid-template-columns: repeat(2, 1fr) }
+
+    /* asymmetrical helper */
+    .grid-asym { display:grid; gap:1.25rem; grid-template-columns: 1.4fr 1fr; align-items:center }
+    .grid-asym.reverse { grid-template-columns: 1fr 1.4fr }
+
+    .team-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap:1rem }
+    .team-card { background:var(--hf-light); padding:1rem; border-radius:12px; text-align:center }
+
+    /* interactive hero styles (kept lightweight) */
+    .hero.interactive-hero{position:relative;padding:2.5rem}
+    .hero .hero-slides{position:relative;min-height:140px}
+    .hero .slide{position:absolute;inset:0;opacity:0;transform:translateY(6px);transition:opacity .45s ease, transform .45s ease;display:flex;flex-direction:column;justify-content:center}
+    .hero .slide.active{opacity:1;transform:translateY(0)}
+    .hero-controls{display:flex;gap:12px;align-items:center;justify-content:center;margin-top:1rem}
+    .hero-controls button{background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff;border-radius:8px;padding:6px 10px;cursor:pointer}
+    .hero-dots{display:flex;gap:8px}
+    .hero-dots button{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.3);border:none}
+    .hero-dots button.active{background:var(--hf-yellow)}
+
+    @media (max-width: 768px) { .grid-asym, .grid-asym.reverse { grid-template-columns: 1fr; } }
+
+    /* Responsive nav (hamburger) */
+    .nav-toggle{display:none}
+    .nav-links a{padding:.45rem .6rem;border-radius:6px}
+    @media (max-width:820px){
+      .nav-toggle{display:block}
+      .nav-links{position:fixed;top:64px;left:0;right:0;background:#050505;flex-direction:column;gap:0;padding:0.75rem 1rem;display:none}
+      .nav-links.show{display:flex}
+      .nav-links a{display:block;padding:.9rem 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+    }
+
+    .meet-team {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(2,6,23,.06);
+}
+
+.meet-team h2 {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.9rem;
+  color: #2c2c2c;
+  margin-bottom: 0.5rem;
+}
+
+.meet-team h3 {
+  font-size: 2rem;
+  margin: 0 0 1rem;
+  color: #000;
+}
+
+.meet-team p.intro {
+  max-width: 700px;
+  margin-bottom: 2rem;
+  color: #000;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.team-card {
+  background: #f7f5f2;
+  border-radius: 14px;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(0,0,0,.12);
+}
+
+.team-card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #f9d342;
+  margin-bottom: .8rem;
+  background: #fff;
+}
+
+.team-role {
+  font-size: 0.75rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #2c2c2c;
+  margin-bottom: .4rem;
+}
+
+.team-card h4 {
+  margin: 0.2rem 0;
+  font-size: 1.1rem;
+  color: #000;
+}
+
+.team-card p {
+  font-size: .9rem;
+  color: #000;
+  margin-top: .4rem;
+}
+
+@media (max-width: 600px) {
+  .meet-team {
+    padding: 1.5rem 1rem;
+  }
+}
+  </style>
+
+    <!-- Hero slideshow: visual-only background slides (text overlay removed) -->
+    <section class="hero interactive-hero" aria-label="Hero slideshow">
+      <div class="hero-slides" aria-hidden="true">
+        <div class="slide active" style="background-image:url('hero1.jpg');"></div>
+        <div class="slide" style="background-image:url('hero2.jpg');"></div>
+        <div class="slide" style="background-image:url('hero3.jpg');"></div>
+      </div>
+      <!-- keep a hidden dots container so JS can attach controls safely -->
+      <div class="hero-dots" aria-hidden="true" style="position:absolute;left:50%;transform:translateX(-50%);bottom:12px;display:none;"></div>
+    </section>
+
+    <div class="content">
+      <section class="section grid-asym black-text">
+        <div>
+          <h2>What it is</h2>
+          <h3>Dance for Change</h3>
+          <p>Dance for Change blends choreography, spoken word, and community theatre. Each piece is co-created with local youth and tailored for the audience—whether it's a school, market square, or a public forum. Beyond performance we host post-show discussions and action moments where audiences commit to concrete steps like joining a cleanup or supporting a mentorship circle.</p>
+          <ul>
+            <li>Short narrative dances that tackle a single issue (10–20 minutes)</li>
+            <li>Interactive debriefs led by youth facilitators</li>
+            <li>Practical entry points for volunteers and partners</li>
+          </ul>
+        </div>
+        <div>
+          <!-- illustration column (kept from previous SVG) -->
+          <div class="content-card" style="display:flex;align-items:center;justify-content:center;height:100%;">
+            <div style="width:100%;max-width:420px">
+              <div class="lead-illustration">
+                <!-- Replace this image file with your own dancer image -->
+                <img src="iludance.png" alt="Person dancing" style="width:100%;height:100%;object-fit:cover;border-radius:10px;display:block" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+ <section class="section black-text" style="margin-top:1rem">
+  <div class="grid-asym reverse">
+    <div>
+      <!-- IMAGE GALLERY (UNCHANGED) -->
+      <div class="content-card">
+        <div class="horizontal-gallery-container" style="width: 100%; overflow-x: auto; padding-bottom: 1rem;">
+          <div class="horizontal-gallery" style="display: flex; gap: 1rem; padding: 0.5rem;">
+            <div class="gallery-item" style="flex: 0 0 auto; width: 220px; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 16px rgba(0,0,0,0.1);">
+              <img src="da1.JPG" alt="Dance Image 8" style="width: 100%; height: 180px; object-fit: cover;">
+            </div>
+            <div class="gallery-item" style="flex: 0 0 auto; width: 220px; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 16px rgba(0,0,0,0.1);">
+              <img src="da2.JPG" alt="Dance Image 9" style="width: 100%; height: 180px; object-fit: cover;">
+            </div>
+            <div class="gallery-item" style="flex: 0 0 auto; width: 220px; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 16px rgba(0,0,0,0.1);">
+              <img src="da3.JPG" alt="Dance Image 10" style="width: 100%; height: 180px; object-fit: cover;">
+            </div>
+            <div class="gallery-item" style="flex: 0 0 auto; width: 220px; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 16px rgba(0,0,0,0.1);">
+              <img src="da4.JPG" alt="Dance Image 11" style="width: 100%; height: 180px; object-fit: cover;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIDEO SECTION (NEW) -->
+      <div class="content-card" style="margin-top:1.5rem">
+        <h4 style="margin-top:0;margin-bottom:1rem">Watch Our Performances</h4>
+
+        <div style="display:flex;gap:1rem;overflow-x:auto;padding-bottom:0.5rem">
+          
+          <!-- VIDEO 1 -->
+          <div style="flex:0 0 320px;border-radius:12px;overflow:hidden;box-shadow:0 8px 16px rgba(0,0,0,0.12)">
+            <iframe 
+              width="100%" 
+              height="180" 
+              src="https://youtu.be/MIdIG-fXumQ?si=M2AiHX7ZaSW6r6QJ" 
+              title="Dance for Change Performance"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+
+          <!-- VIDEO 2 -->
+          <div style="flex:0 0 320px;border-radius:12px;overflow:hidden;box-shadow:0 8px 16px rgba(0,0,0,0.12)">
+            <iframe 
+              width="100%" 
+              height="180" 
+              src="https://youtu.be/M-47or5pr1s?si=IRJXdLTIM_o8qVZd" 
+              title="Dance for Change Performance"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+
+          <!-- VIDEO 3 -->
+          <div style="flex:0 0 320px;border-radius:12px;overflow:hidden;box-shadow:0 8px 16px rgba(0,0,0,0.12)">
+            <iframe 
+              width="100%" 
+              height="180" 
+              src="https://youtu.be/ctnt14YtYms?si=LB2Iv1IOiq4Mi0z1" 
+              title="Dance for Change Performance"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+
+        </div>
+
+        <p style="font-size:0.85rem;color:#666;margin-top:0.5rem">
+          Scroll horizontally to watch more videos →
+        </p>
+      </div>
+
+      <a class="btn" href="mailto:huitfambo01@gmail.com" style="margin-top: 1.5rem; display: inline-block;">Book a performance</a>
+    </div>
+
+    <div>
+      <h2>Gallery</h2>
+      <h3>Moments from Dance for Change</h3>
+      <p>Explore snapshots and videos from our Dance for Change performances, showcasing the energy and passion of our youth performers as they bring important social issues to life through movement and storytelling.</p>
+    </div>
+  </div>
+</section>
+
+
+  <section class="meet-team">
+  <h2>Our People</h2>
+  <h3>Meet the Team</h3>
+  <p class="intro">
+    Behind Dance for Change is a passionate team of creatives, organizers,
+    and youth leaders using art to inspire social transformation.
+  </p>
+
+  <div class="team-grid">
+    <div class="team-card">
+      <img src="TEAM/kelvin.jpg" alt="Kelvin Oluoch">
+      <div class="team-role">Founder & Program Lead</div>
+      <h4>Kelvin Oluoch</h4>
+      <p>Leads vision, choreography, and community engagement initiatives.</p>
+    </div>
+
+    <div class="team-card">
+      <img src="TEAM/member1.jpg" alt="Creative Director">
+      <div class="team-role">Creative Director</div>
+      <h4>Jane Achieng</h4>
+      <p>Guides storytelling, performance design, and artistic quality.</p>
+    </div>
+
+    <div class="team-card">
+      <img src="TEAM/member2.jpg" alt="Youth Coordinator">
+      <div class="team-role">Youth Coordinator</div>
+      <h4>Brian Otieno</h4>
+      <p>Mobilizes youth groups and facilitates post-performance dialogues.</p>
+    </div>
+
+    <div class="team-card">
+      <img src="TEAM/member3.jpg" alt="Monitoring and Evaluation">
+      <div class="team-role">Monitoring & Impact</div>
+      <h4>Faith Wanjiku</h4>
+      <p>Tracks outcomes, learning, and community impact stories.</p>
+    </div>
+  </div>
+
+</section>
+
+    <!-- Contact section (Formspree) -->
+    <section id="contact" class="contact-section">
+      <h2 style="margin-bottom:.5rem">Contact Us</h2>
+      <p style="margin-top:0;margin-bottom:1rem">Use the form below to reach the Dance for Change team.</p>
+      <form id="contactForm" class="contact-form" action="https://formspree.io/f/meoyzopl" method="POST">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Your email" required>
+        <input type="text" name="subject" placeholder="Subject">
+        <textarea name="message" rows="5" placeholder="Message" required></textarea>
+        <input type="hidden" name="_language" value="en">
+        <button type="submit">Send Message</button>
+        <div id="contactStatus" style="font-size:.95rem;color:#333;display:none;margin-top:.5rem"></div>
+      </form>
+    </section>
+
+  </main>
+
+  <footer style="text-align:center;padding:2rem;color:#666">© <span id="year"></span> Huit Fambo Foundation</footer>
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+  <script>
+    (function(){
+      function initHero(root){
+        const el = document.querySelector(root);
+        if(!el) return;
+        const slides = Array.from(el.querySelectorAll('.slide'));
+        const prev = el.querySelector('.prev');
+        const next = el.querySelector('.next');
+        const dotsWrap = el.querySelector('.hero-dots');
+          let i=0, timer=null;
+          if (dotsWrap) {
+            slides.forEach((s, idx)=>{
+              const btn=document.createElement('button');
+              btn.addEventListener('click', ()=>go(idx));
+              if(idx===0) btn.classList.add('active');
+              dotsWrap.appendChild(btn);
+            });
+          }
+        function show(n){
+          slides.forEach(s=>s.classList.remove('active'));
+          slides[n].classList.add('active');
+          Array.from(dotsWrap.children).forEach((d,idx)=>d.classList.toggle('active', idx===n));
+        }
+        function go(n){ i=(n+slides.length)%slides.length; show(i); reset(); }
+        function nextFn(){ go(i+1); }
+        function prevFn(){ go(i-1); }
+        function reset(){ clearInterval(timer); timer=setInterval(nextFn,4000); }
+        if(next) next.addEventListener('click', nextFn);
+        if(prev) prev.addEventListener('click', prevFn);
+        el.addEventListener('mouseenter', ()=>clearInterval(timer));
+        el.addEventListener('mouseleave', reset);
+        reset();
+      }
+      initHero('.hero.interactive-hero');
+    })();
+  </script>
+  <script>
+    (function(){
+      const form = document.getElementById('contactForm');
+      const status = document.getElementById('contactStatus');
+      if(!form) return;
+      form.addEventListener('submit', async function(e){
+        e.preventDefault();
+        status.style.display = 'block';
+        status.textContent = 'Sending...';
+        const url = form.action;
+        const data = new FormData(form);
+        try{
+          const res = await fetch(url, { method: 'POST', headers: { 'Accept': 'application/json' }, body: data });
+          if(res.ok){
+            status.textContent = 'Thanks — your message was sent.';
+            form.reset();
+          } else {
+            const json = await res.json().catch(()=>null);
+            status.textContent = (json && json.error) ? json.error : 'There was a problem sending your message.';
+          }
+        }catch(err){
+          status.textContent = 'Network error. Please try again later.';
+        }
+      });
+    })();
+  </script>
+  <script>
+    (function(){
+      const btn = document.querySelector('.nav-toggle');
+      if(!btn) return;
+      btn.addEventListener('click', ()=>{
+        const navLinks = document.querySelector('.nav-links');
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        navLinks.classList.toggle('show');
+      });
+      // close when a link is clicked (mobile)
+      document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click', ()=>{
+        const navLinks = document.querySelector('.nav-links'); if(navLinks) navLinks.classList.remove('show');
+        btn.setAttribute('aria-expanded','false');
+      }));
+    })();
+  </script>
+</body>
+</html>

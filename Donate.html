@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donate | Huit Fambo Foundation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --hf-yellow: #f9d342;
+      --hf-dark: #0a0a0a;
+      --hf-light: #f7f5f2;
+      --hf-gray: #2c2c2c;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--hf-light);
+      color: var(--hf-dark);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.95);
+      border-bottom: 3px solid var(--hf-yellow);
+      backdrop-filter: blur(6px);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 3px solid var(--hf-yellow);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+      background: #000;
+    }
+
+    .logo-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .logo span {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links a {
+      color: #fff;
+      position: relative;
+      padding-bottom: 0.25rem;
+    }
+
+    .nav-links a.active::after,
+    .nav-links a:hover::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      background: var(--hf-yellow);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.75rem;
+      background: var(--hf-yellow);
+      color: var(--hf-dark);
+      font-weight: 700;
+      border-radius: 999px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-outline {
+      border: 2px solid var(--hf-yellow);
+      background: transparent;
+      color: var(--hf-yellow);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 60vh;
+      padding: 5rem 2rem;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      text-align: center;
+      background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.65)),
+        url('20.jpg') center/cover;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 4vw, 3.8rem);
+      margin-bottom: 1rem;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      background: var(--hf-yellow);
+      color: var(--hf-dark);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .section h2 {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--hf-gray);
+      font-size: 1rem;
+    }
+
+    .section h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .support-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    }
+
+    .support-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 2rem;
+      border: 1px solid #eee;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    form {
+      display: grid;
+      gap: 1rem;
+    }
+
+    label {
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border-radius: 12px;
+      border: 1px solid #dcdcdc;
+      font-family: inherit;
+      font-size: 1rem;
+      background: #fff;
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .payment-wrapper {
+      display: grid;
+      gap: 2rem;
+    }
+
+    @media (min-width: 900px) {
+      .payment-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .panel {
+      background: #0f0f0f;
+      color: #fff;
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .panel h3 {
+      margin-top: 0;
+    }
+
+    .status {
+      border-radius: 12px;
+      padding: 0.85rem 1rem;
+      background: rgba(249, 211, 66, 0.15);
+      color: var(--hf-yellow);
+      font-weight: 600;
+      display: none;
+    }
+
+    .donate-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 1.5rem 0;
+    }
+
+    .donate-pill {
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 999px;
+      padding: 0.5rem 1.3rem;
+      letter-spacing: 0.05em;
+    }
+
+    .quick-links {
+      background: var(--hf-dark);
+      color: #fff;
+      padding: 3rem 2rem;
+    }
+
+    .quick-links-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .quick-links-title {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--hf-yellow);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .quick-links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .quick-link-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .quick-link-item a {
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      display: inline-block;
+    }
+
+    .quick-link-item a:hover {
+      color: var(--hf-yellow);
+    }
+
+    .quick-link-item p {
+      font-size: 0.9rem;
+      color: #bbb;
+      margin: 0;
+    }
+
+    footer {
+      background: #050505;
+      color: #bbb;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0.75rem 1rem; }
+      .nav-links { gap: 0.75rem; font-size: 0.7rem; }
+      .logo-badge { width: 40px; height: 40px; }
+      .hero { min-height: 50vh; padding: 2rem 1rem; }
+      .hero h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); }
+      .section { padding: 2rem 1rem; }
+      .section h2 { font-size: 0.8rem; }
+      .section h3 { font-size: 1.4rem; }
+      .support-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+      .payment-wrapper { grid-template-columns: 1fr; }
+      .panel { padding: 1.5rem; }
+      input, textarea, select { font-size: 0.95rem; }
+      .quick-links { padding: 2rem 1rem; }
+      .quick-links-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+      .btn { padding: 0.65rem 1.5rem; font-size: 0.85rem; }
+    }
+
+    @media (max-width: 480px) {
+      nav { flex-direction: column; gap: 0.75rem; padding: 0.5rem; }
+      .nav-links { gap: 0.4rem; font-size: 0.6rem; flex-wrap: wrap; justify-content: center; }
+      .logo-badge { width: 35px; height: 35px; }
+      .logo span { font-size: 0.75rem; }
+      .hero { min-height: 45vh; padding: 1.5rem 0.75rem; }
+      .hero h1 { font-size: 1.3rem; }
+      .hero p { font-size: 0.8rem; }
+      .pill { padding: 0.25rem 0.65rem; font-size: 0.65rem; }
+      .section { padding: 1.5rem 0.75rem; }
+      .section h2 { font-size: 0.65rem; }
+      .section h3 { font-size: 1.1rem; }
+      .support-grid { grid-template-columns: 1fr; }
+      .payment-wrapper { grid-template-columns: 1fr; }
+      .panel { padding: 1.25rem; }
+      input, textarea, select { padding: 0.65rem 0.75rem; font-size: 0.9rem; }
+      label { font-size: 0.7rem; }
+      .quick-links { padding: 1.5rem 0.75rem; }
+      .quick-links-grid { grid-template-columns: 1fr; }
+      .btn { padding: 0.6rem 1.2rem; font-size: 0.75rem; }
+    }
+    /* Mobile hamburger + drawer styles */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 0.35rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2.5px;
+      background: var(--hf-yellow);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(8px, -8px);
+    }
+
+    .nav-drawer {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 10, 0.95);
+      border-bottom: 2px solid var(--hf-yellow);
+      flex-direction: column;
+      gap: 0;
+      padding: 0;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      z-index: 99;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .nav-drawer.active { display: flex; max-height: 500px; }
+
+    .nav-drawer a { color: #fff; padding: 1rem 2rem; border-bottom: 1px solid rgba(249,211,66,0.12); }
+
+  </style>
+</head>
+<body>
+  <header>
+  <!-- Hreflang alternates (update with real language-specific URLs if available) -->
+  <link rel="alternate" hreflang="en" href="Donate.html?lang=en">
+  <link rel="alternate" hreflang="fr" href="Donate.html?lang=fr">
+  <link rel="alternate" hreflang="es" href="Donate.html?lang=es">
+  <link rel="alternate" hreflang="ar" href="Donate.html?lang=ar">
+  <link rel="alternate" hreflang="sw" href="Donate.html?lang=sw">
+  <link rel="alternate" hreflang="zh" href="Donate.html?lang=zh">
+  <link rel="alternate" hreflang="hi" href="Donate.html?lang=hi">
+  <link rel="alternate" hreflang="x-default" href="Donate.html">
+    <nav>
+      <div class="logo">
+        <div class="logo-badge">
+          <img src="logo.png" alt="Huit Fambo Foundation logo">
+        </div>
+        <span>Huit Fambo Foundation</span>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="About.html">About</a>
+        <a href="WhatWeDo.html">What We Do</a>
+        <a href="Impact.html">Impact</a>
+        <a href="library.html">Library</a>
+        <a href="dance.html">Dance</a>
+        <a href="waste.html">Waste</a>
+        <a class="active" href="Donate.html">Support Us</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <button class="hamburger" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+    <nav class="nav-drawer" aria-label="Mobile navigation">
+      <a href="index.html">Home</a>
+      <a href="About.html">About</a>
+      <a href="WhatWeDo.html">What We Do</a>
+      <a href="Impact.html">Impact</a>
+      <a href="library.html">Library</a>
+      <a href="mentorship.html">Mentorship</a>
+      <a href="dance.html">Dance</a>
+      <a href="waste.html">Waste</a>
+      <a href="Donate.html">Support Us</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <span class="pill">Support the movement</span>
+        <h1>Every contribution keeps Kibera’s youth thriving.</h1>
+        <p>Fuel Dance for Change, mentorship circles, environmental clean-ups, and the community library. Choose the gift format that fits you best—cash, equipment, expertise, or amplification.</p>
+        <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+          <a class="btn" href="#payments">Donate now</a>
+          <a class="btn btn-outline" href="#support">Other ways to help</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="support" class="section">
+      <h2>WAYS TO GIVE</h2>
+      <h3>Multiple channels, shared mission</h3>
+      <div class="support-grid">
+        <article class="support-card">
+          <h4>Financial Donations</h4>
+          <p>Power our weekly programs through Paystack or bank transfer. Funds cover sanitary kits, transport, and library resources.</p>
+        </article>
+        <article class="support-card">
+          <h4>Equipment & Supplies</h4>
+          <p>Donate dance outfits, speakers, books, stationery, or waste collection gear. Every item finds immediate use.</p>
+        </article>
+        <article class="support-card">
+          <h4>Skills & Mentorship</h4>
+          <p>Coach our dancers, host workshops, or mentor youth in leadership, entrepreneurship, and technology.</p>
+        </article>
+        <article class="support-card">
+          <h4>Corporate & Group Partners</h4>
+          <p>Co-brand clean-up drives, sponsor library expansions, or match employee donations.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="payments" class="section">
+      <div class="payment-wrapper">
+        <article class="panel">
+          <h3>Give with Paystack</h3>
+          <p>Use Paystack to donate securely via card, bank, or mobile money. You will be redirected to a safe Paystack checkout window.</p>
+          <form id="paystackForm">
+            <div>
+              <label for="psName">Full Name</label>
+              <input id="psName" name="name" type="text" placeholder="Your Name" required />
+            </div>
+            <div>
+              <label for="psEmail">Email</label>
+              <input id="psEmail" name="email" type="email" placeholder="you@example.com" required />
+            </div>
+            <div>
+              <label for="psPhone">Phone Number</label>
+              <input id="psPhone" name="phone" type="tel" placeholder="+2547..." required />
+            </div>
+            <div>
+              <label for="psAmount">Amount (KES)</label>
+              <input id="psAmount" name="amount" type="number" min="100" step="50" placeholder="1000" required />
+            </div>
+            <button class="btn" type="submit">Donate via Paystack</button>
+            <div id="paystackStatus" class="status"></div>
+          </form>
+        </article>
+
+        <article class="panel">
+          <h3>Bank & Local Transfers</h3>
+          <p>If you prefer direct transfer, use the details below then email us your confirmation so we can send a receipt.</p>
+          <ul style="list-style:none; padding-left:0; font-size:0.95rem;">
+            <li><strong>Account Name:</strong> Huit Fambo Foundation</li>
+            <li><strong>Bank:</strong> Your Bank Name</li>
+            <li><strong>Account No:</strong> 0000 0000 0000</li>
+            <li><strong>Branch:</strong> Your Branch</li>
+          </ul>
+          <p style="margin-top:1rem;">Send proof of payment or questions to <a style="color:var(--hf-yellow);" href="mailto:huitfambo01@gmail.com">huitfambo01@gmail.com</a>.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="support-card">
+        <h3>In-kind + Volunteer Support</h3>
+        <p>Tell us how you would like to stand with Huit Fambo. We coordinate drop-offs, pick-ups, and workshop schedules through our partnerships desk.</p>
+        <form action="https://formspree.io/f/meoyzopl" method="POST">
+          <div>
+            <label for="supportName">Full Name</label>
+            <input id="supportName" name="name" type="text" placeholder="Your name" required />
+          </div>
+          <div>
+            <label for="supportEmail">Email</label>
+            <input id="supportEmail" name="email" type="email" placeholder="you@example.com" required />
+          </div>
+          <div>
+            <label for="supportType">Support Type</label>
+            <select id="supportType" name="support_type" required>
+              <option value="">Select an option</option>
+              <option value="Equipment Donation">Equipment Donation</option>
+              <option value="Volunteer Mentorship">Volunteer Mentorship</option>
+              <option value="Corporate Partnership">Corporate Partnership</option>
+              <option value="Story Amplification">Story Amplification</option>
+            </select>
+          </div>
+          <div>
+            <label for="supportMessage">Message</label>
+            <textarea id="supportMessage" name="message" placeholder="Tell us how you would like to help" required></textarea>
+          </div>
+          <button class="btn" type="submit">Submit Support Form</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="quick-links">
+    </section>
+
+    <section class="section supervisors-section">
+      <h2>PROJECT SUPERVISORS</h2>
+      <h3>Members supervising these activities</h3>
+      <div class="content-card">
+        <ul>
+          <li><strong>Bravin Odhiambo</strong> — Founder and CEO</li>
+          <li><strong>Duncun Seda</strong> — CO-Founder</li>
+          <li><strong>Kevin Malubi</strong> — Project Manager</li>
+          <li><strong>John Ocholla</strong> — Transport and Logistics Supervisor</li>
+          <li><strong>Brenda Omondi</strong> — Treasurer</li>
+          <li><strong>Telvinch Imani</strong> — Design and Social Media Manager</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="quick-links">
+      <div class="quick-links-container">
+        <h2 class="quick-links-title">Quick Links</h2>
+        <div class="quick-links-grid">
+          <div class="quick-link-item">
+            <a href="index.html">Home</a>
+            <p>Back to the homepage</p>
+          </div>
+          <div class="quick-link-item">
+            <a href="About.html">About</a>
+            <p>Learn about our story</p>
+          </div>
+          <div class="quick-link-item">
+            <a href="WhatWeDo.html">What We Do</a>
+            <p>Explore our programs</p>
+          </div>
+          <div class="quick-link-item">
+            <a href="Impact.html">Impact</a>
+            <p>See our results</p>
+          </div>
+          <div class="quick-link-item">
+            <a href="mailto:huitfambo01@gmail.com">Contact</a>
+            <p>Get in touch</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Huit Fambo Foundation. Kibera, Nairobi | Designed By UNI Freelancers Foundation.
+  </footer>
+
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const paystackForm = document.getElementById('paystackForm');
+    const paystackStatus = document.getElementById('paystackStatus');
+
+    function showPaystackStatus(message, success = false) {
+      if (!paystackStatus) return;
+      paystackStatus.style.display = 'block';
+      paystackStatus.style.background = success ? 'rgba(68, 214, 44, 0.15)' : 'rgba(249, 211, 66, 0.15)';
+      paystackStatus.style.color = success ? '#44d62c' : 'var(--hf-yellow)';
+      paystackStatus.textContent = message;
+    }
+
+    if (paystackForm) {
+      paystackForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        showPaystackStatus('Opening secure Paystack checkout…');
+
+        const name = document.getElementById('psName').value;
+        const email = document.getElementById('psEmail').value;
+        const phone = document.getElementById('psPhone').value;
+        const amountValue = parseFloat(document.getElementById('psAmount').value || '0');
+
+        if (!amountValue || amountValue <= 0) {
+          showPaystackStatus('Enter a valid amount to continue.');
+          return;
+        }
+
+        const handler = PaystackPop.setup({
+          key: 'pk_test_7146c8667d926acba53b9bcbe19888250bb906de',
+          email: email,
+          amount: amountValue * 100,
+          currency: 'KES',
+          ref: 'HF-' + Date.now(),
+          metadata: {
+            custom_fields: [
+              {
+                display_name: 'Donor Name',
+                variable_name: 'donor_name',
+                value: name
+              },
+              {
+                display_name: 'Phone',
+                variable_name: 'phone_number',
+                value: phone
+              }
+            ]
+          },
+          callback: function () {
+            showPaystackStatus('Thank you! Your donation was received.', true);
+            paystackForm.reset();
+          },
+          onClose: function () {
+            showPaystackStatus('Payment window closed. You can try again anytime.');
+          }
+        });
+
+        handler.openIframe();
+      });
+    }
+  </script>
+  <script src="/nav.js"></script>
+</body>
+</html>
+
