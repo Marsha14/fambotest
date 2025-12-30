@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What We Do | Huit Fambo Foundation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/responsive.css">
+  <style>
+    :root {
+      --hf-yellow: #f9d342;
+      --hf-dark: #0a0a0a;
+      --hf-light: #f7f5f2;
+      --hf-gray: #2c2c2c;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--hf-light);
+      color: var(--hf-dark);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.95);
+      border-bottom: 3px solid var(--hf-yellow);
+      backdrop-filter: blur(6px);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 3px solid var(--hf-yellow);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+      background: #000;
+    }
+
+    .logo-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .logo span {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links a {
+      color: #fff;
+      position: relative;
+      padding-bottom: 0.25rem;
+    }
+
+    .nav-links a.active::after,
+    .nav-links a:hover::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      background: var(--hf-yellow);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.75rem;
+      background: var(--hf-yellow);
+      color: var(--hf-dark);
+      font-weight: 700;
+      border-radius: 999px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 65vh;
+      padding: 5rem 2rem;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      text-align: center;
+      background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.65)),
+        url('25.jpg') center/cover;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      margin-bottom: 1rem;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      background: var(--hf-yellow);
+      color: var(--hf-dark);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .section h2 {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--hf-gray);
+      font-size: 1rem;
+    }
+
+    .section h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .activities-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .activity-card {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid #eee;
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .activity-media {
+      width: 100%;
+      padding-top: 65%;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .activity-content {
+      padding: 1.75rem;
+    }
+
+    .activity-content h4 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    .activity-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      padding: 0.25rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(249,211,66,0.2);
+      color: var(--hf-gray);
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .spotlight {
+      background: var(--hf-dark);
+      color: var(--hf-light);
+      border-radius: 24px;
+      padding: 3rem;
+      display: grid;
+      gap: 2rem;
+    }
+
+    @media (min-width: 900px) {
+      .spotlight {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+      }
+    }
+
+    .spotlight img {
+      width: 100%;
+      border-radius: 20px;
+      object-fit: cover;
+    }
+
+    .timeline {
+      border-left: 3px solid var(--hf-yellow);
+      padding-left: 1.5rem;
+    }
+
+    .timeline-step {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .timeline-step::before {
+      content: '';
+      position: absolute;
+      left: -1.8rem;
+      top: 0.35rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--hf-yellow);
+      border: 3px solid #fff;
+    }
+
+    .quick-links {
+      background: var(--hf-dark);
+      color: #fff;
+      padding: 3rem 2rem;
+    }
+
+    .quick-links-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .quick-links-title {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--hf-yellow);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .quick-links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .quick-link-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .quick-link-item a {
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      display: inline-block;
+    }
+
+    .quick-link-item a:hover {
+      color: var(--hf-yellow);
+    }
+
+    .quick-link-item p {
+      font-size: 0.9rem;
+      color: #bbb;
+      margin: 0;
+    }
+
+    footer {
+      background: #050505;
+      color: #bbb;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0.75rem 1rem; }
+      .nav-links { gap: 0.75rem; font-size: 0.7rem; }
+      .logo-badge { width: 40px; height: 40px; }
+      .hero { min-height: 50vh; padding: 2rem 1rem; }
+      .hero h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); }
+      .section { padding: 2rem 1rem; }
+      .section h2 { font-size: 0.8rem; }
+      .section h3 { font-size: 1.4rem; }
+      .activities-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+      .activity-content { padding: 1.25rem; }
+      .spotlight { padding: 1.5rem; }
+      .quick-links { padding: 2rem 1rem; }
+      .quick-links-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+      .btn { padding: 0.65rem 1.5rem; font-size: 0.85rem; }
+    }
+
+    @media (max-width: 480px) {
+      nav { flex-direction: column; gap: 0.75rem; padding: 0.5rem; }
+      .nav-links { gap: 0.4rem; font-size: 0.6rem; flex-wrap: wrap; justify-content: center; }
+      .logo-badge { width: 35px; height: 35px; }
+      .logo span { font-size: 0.75rem; }
+      .hero { min-height: 45vh; padding: 1.5rem 0.75rem; }
+      .hero h1 { font-size: 1.3rem; }
+      .hero p { font-size: 0.8rem; }
+      .pill { padding: 0.25rem 0.65rem; font-size: 0.65rem; }
+      .section { padding: 1.5rem 0.75rem; }
+      .section h2 { font-size: 0.65rem; }
+      .section h3 { font-size: 1.1rem; }
+      .activities-grid { grid-template-columns: 1fr; }
+      .activity-media { padding-top: 50%; }
+      .activity-content { padding: 1rem; }
+      .tag { font-size: 0.65rem; padding: 0.2rem 0.6rem; }
+      .spotlight { padding: 1.25rem 0.75rem; gap: 1rem; }
+      .quick-links { padding: 1.5rem 0.75rem; }
+      .quick-links-grid { grid-template-columns: 1fr; }
+      .btn { padding: 0.6rem 1.2rem; font-size: 0.75rem; }
+    }
+    /* Mobile hamburger + drawer styles */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 0.35rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2.5px;
+      background: var(--hf-yellow);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(8px, -8px); }
+
+    .nav-drawer {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 10, 0.95);
+      border-bottom: 2px solid var(--hf-yellow);
+      flex-direction: column;
+      gap: 0;
+      padding: 0;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      z-index: 99;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .nav-drawer.active { display: flex; max-height: 500px; }
+    .nav-drawer a { color: #fff; padding: 1rem 2rem; border-bottom: 1px solid rgba(249,211,66,0.12); }
+
+  </style>
+</head>
+<body>
+  <header>
+  <!-- Hreflang alternates (update with real language-specific URLs if available) -->
+  <link rel="alternate" hreflang="en" href="WhatWeDo.html?lang=en">
+  <link rel="alternate" hreflang="fr" href="WhatWeDo.html?lang=fr">
+  <link rel="alternate" hreflang="es" href="WhatWeDo.html?lang=es">
+  <link rel="alternate" hreflang="ar" href="WhatWeDo.html?lang=ar">
+  <link rel="alternate" hreflang="sw" href="WhatWeDo.html?lang=sw">
+  <link rel="alternate" hreflang="zh" href="WhatWeDo.html?lang=zh">
+  <link rel="alternate" hreflang="hi" href="WhatWeDo.html?lang=hi">
+  <link rel="alternate" hreflang="x-default" href="WhatWeDo.html">
+    <nav>
+      <div class="logo">
+        <div class="logo-badge">
+          <img src="logo.png" alt="Huit Fambo Foundation logo">
+        </div>
+        <span>Huit Fambo Foundation</span>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="About.html">About</a>
+        <a class="active" href="WhatWeDo.html">What We Do</a>
+        <a href="Impact.html">Impact</a>
+        <a href="library.html">Library</a>
+        <a href="dance.html">Dance</a>
+        <a href="waste.html">Waste</a>
+        <a href="Donate.html">Support Us</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="hamburger" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+    <nav class="nav-drawer" aria-label="Mobile navigation">
+      <a href="index.html">Home</a>
+      <a href="About.html">About</a>
+      <a href="WhatWeDo.html">What We Do</a>
+      <a href="Impact.html">Impact</a>
+      <a href="library.html">Library</a>
+      <a href="dance.html">Dance</a>
+      <a href="waste.html">Waste</a>
+      <a href="Donate.html">Support Us</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <span class="pill">Programs in motion</span>
+        <h1>Where creativity meets action every week.</h1>
+        <p>Huit Fambo Foundation runs immersive programs that blend art, advocacy, and environmental responsibility. Scroll to explore the heartbeat of our movement.</p>
+        <a class="btn" href="#activities">Explore Activities</a>
+      </div>
+    </section>
+
+    <section id="activities" class="section">
+      <h2>CORE PROGRAMS</h2>
+      <h3>Activities that keep Kibera inspired</h3>
+      <div class="activities-grid">
+        <a class="activity-card" href="dance.html">
+          <div class="activity-media" style="background-image:url('18.jpg');"></div>
+          <div class="activity-content">
+            <h4>Dance for Change Performances</h4>
+            <p>High-energy showcases in schools, markets, and festivals that speak on gender equality, climate justice, and youth voice. Learn more about our performances, choreography, and leaders.</p>
+            <div class="activity-tags">
+              <span class="tag">Advocacy</span>
+              <span class="tag">Art</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="activity-card" href="waste.html">
+          <div class="activity-media" style="background-image:url('21.jpg');"></div>
+          <div class="activity-content">
+            <h4>Waste Wise Saturdays</h4>
+            <p>Teams cover 50 households every weekend, collecting waste, sorting plastics, and educating families on recycling. Read about routes, impact, and the team running it.</p>
+            <div class="activity-tags">
+              <span class="tag">Environment</span>
+              <span class="tag">Community</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Mentorship activity removed per request -->
+
+        <a class="activity-card" href="library.html">
+          <div class="activity-media" style="background-image:url('five.jpg');"></div>
+          <div class="activity-content">
+            <h4>Community Library & Safe Space</h4>
+            <p>In partnership with Masaku Lions Club, 35–40 children meet daily for reading clubs, art sessions, and homework support. Discover programs, volunteers, and how to support.</p>
+            <div class="activity-tags">
+              <span class="tag">Learning</span>
+              <span class="tag">Safe Space</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="spotlight">
+        <div>
+          <span class="pill">Behind the scenes</span>
+          <h3>How a typical Saturday unfolds</h3>
+          <div class="timeline">
+            <div class="timeline-step">
+              <h4>06:00 am — Call time & debriefs</h4>
+              <p>Arrival for the team, talk about the day ahead, Role distribution.</p>
+            </div>
+            <div class="timeline-step">
+              <h4>07:00 am — Community activations, distribution and sorting</h4>
+              <p>Dance pop-ups energize the neighborhood while cleanup crews collect and sort waste. Separating organic from inorganic waste then disposing them in a designated area.</p>
+            </div>
+            <div class="timeline-step">
+              <h4>08:00 am — Washing tools and returning tools to stores</h4>
+              <p>Washing the used tools e.g. brooms, rakes, and returning them to their respective stores.</p>
+            </div>
+            <div class="timeline-step">
+              <h4>09:00 am — Debrief and Library Opening</h4>
+              <p>Teams log impact numbers, share stories, and plan next week’s priorities as we open the community library.</p>
+            </div>
+          </div>
+        </div>
+        <img src="28.jpg" alt="Huit Fambo team in action">
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="activity-card" style="flex-direction: row; gap:2rem; flex-wrap: wrap;">
+        <div style="flex:1; min-width:260px;">
+          <h3>Bring Huit Fambo to your space</h3>
+          <p>Book a Dance for Change performance, invite our mentors to your school, or sponsor a Waste Wise pop-up in your neighborhood.</p>
+          <a class="btn" href="mailto:huitfambo01@gmail.com">Request a Collaboration</a>
+        </div>
+        <div class="activity-media" style="flex:1; min-width:260px; padding-top:0; height:260px; border-radius:16px; background-image:url('images/collab.jpg');"></div>
+      </div>
+    </section>
+    </section>
+
+    <section class="section supervisors-section">
+      <h2>PROJECT SUPERVISORS</h2>
+      <h3>Members supervising these activities</h3>
+      <div class="content-card">
+        <ul>
+          <li><strong>Bravin Odhiambo</strong> — Founder and CEO</li>
+          <li><strong>Duncun Seda</strong> — CO-Founder</li>
+          <li><strong>Kevin Malubi</strong> — Project Manager</li>
+          <li><strong>John Ocholla</strong> — Transport and Logistics Supervisor</li>
+          <li><strong>Brenda Omondi</strong> — Treasurer</li>
+          <li><strong>Telvinch Imani</strong> — Design and Social Media Manager</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="quick-links">
+      <div class="quick-links-container">
+        <h2 class="quick-links-title">Quick Links</h2>
+        <div class="quick-links-grid">
+          <div class="quick-link-item">
+            <a href="index.html">Home</a>
+            <p>Back to the homepage</p>
+          </div>
+          <div class="quick-link-item">
+            <a href="About.html">About</a>
+            <p>Learn about our story</p>
+          </div>
+          <div class="quick-link-item">
+            <a href="Impact.html">Impact</a>
+            <p>See program outcomes</p>
+          </div>
+          <div class="quick-link-item">
+            <a href="Donate.html">Support Us</a>
+            <p>Make a contribution</p>
+          </div>
+          <div class="quick-link-item">
+            <a href="mailto:huitfambo01@gmail.com">Contact</a>
+            <p>Get in touch</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Huit Fambo Foundation. Kibera, Nairobi | Designed By UNI Freelancers Foundation.
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script src="/nav.js"></script>
+</body>
+</html>
