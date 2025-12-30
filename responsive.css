@@ -1,0 +1,68 @@
+/* Responsive, mobile-first styles for Huit Fambo site */
+:root{--hf-yellow:#f9d342;--hf-dark:#0a0a0a;--hf-light:#f7f5f2;--nav-bg:rgba(5,5,5,0.98);--nav-height:64px}
+*{box-sizing:border-box}
+html,body{height:100%}
+img,video{max-width:100%;height:auto;display:block}
+button{cursor:pointer}
+
+/* Base layout and typography (mobile-first) */
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif;background:var(--hf-light);color:var(--hf-dark);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{line-height:1.15;margin:0 0 .5rem}
+p{margin:0 0 1rem}
+
+/* Header/nav base */
+nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:.6rem 1rem;min-height:var(--nav-height);background:var(--nav-bg);color:#fff;position:relative;z-index:1200}
+.nav-brand{display:flex;align-items:center;gap:.6rem}
+
+/* Mobile & Tablet: hamburger navigation (default) */
+.nav-toggle{display:block;background:transparent;border:0;color:#fff;font-size:22px;padding:.4rem .6rem}
+.nav-toggle:focus{outline:3px solid rgba(249,211,66,0.22);outline-offset:3px}
+
+/* Hidden nav panel (off-canvas from top) */
+.nav-links{display:flex;flex-direction:column;gap:.25rem;background:var(--nav-bg);position:fixed;top:var(--nav-height);left:0;right:0;padding:1rem 1rem;max-height:calc(100vh - var(--nav-height));overflow:auto;transform:translateY(-12px);opacity:0;pointer-events:none;border-top:1px solid rgba(255,255,255,0.02)}
+.nav-links a{color:#fff;padding:.9rem 1rem;border-radius:8px;display:block;font-weight:600}
+.nav-links.show{transform:none;opacity:1;pointer-events:auto}
+
+/* small animation for links */
+.nav-links{transition:transform .28s cubic-bezier(.2,.9,.3,1),opacity .22s ease}
+
+/* Desktop layout (>=1024px) - horizontal nav */
+@media (min-width:1024px){
+  .nav-toggle{display:none}
+  .nav-links{position:static;display:flex;flex-direction:row;gap:1rem;padding:0;background:transparent;max-height:none;transform:none;opacity:1;pointer-events:auto;border-top:0}
+  .nav-links a{padding:0;color:#fff}
+}
+
+/* Tablet specific adjustments (768px - 1023px): keep hamburger but slightly larger targets */
+@media (min-width:768px){
+  .nav-links a{font-size:1.05rem}
+  .nav-toggle{font-size:24px}
+}
+
+/* Accessibility focus */
+.nav-links a:focus{outline:3px solid rgba(249,211,66,0.25);outline-offset:2px}
+
+/* Utilities */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* RTL support hook */
+.is-rtl nav, .is-rtl .nav-links{direction:rtl}
+
+/* Make sure banners, images and videos are fluid */
+img,video,iframe{max-width:100%;height:auto}
+
+/* Buttons touch-friendly */
+button, .btn{min-height:40px;min-width:44px;padding:.6rem 1rem;border-radius:8px}
+
+/* Small helpers for content scaling */
+@media (min-width:768px){
+  h1{font-size:1.6rem}
+  h2{font-size:1.3rem}
+}
+@media (min-width:1024px){
+  h1{font-size:1.9rem}
+  h2{font-size:1.5rem}
+}
+
+/* Prevent horizontal scroll */
+html,body{overflow-x:hidden}

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Hreflang alternates (update with real language-specific URLs if available) -->
+  <link rel="alternate" hreflang="en" href="library.html?lang=en">
+  <link rel="alternate" hreflang="fr" href="library.html?lang=fr">
+  <link rel="alternate" hreflang="es" href="library.html?lang=es">
+  <link rel="alternate" hreflang="ar" href="library.html?lang=ar">
+  <link rel="alternate" hreflang="sw" href="library.html?lang=sw">
+  <link rel="alternate" hreflang="zh" href="library.html?lang=zh">
+  <link rel="alternate" hreflang="hi" href="library.html?lang=hi">
+  <link rel="alternate" hreflang="x-default" href="library.html">
+  <title>Community Library & Safe Space | Huit Fambo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/responsive.css">
+  <style>
+    :root{--hf-yellow:#f9d342;--hf-dark:#0a0a0a;--hf-light:#ffffff;--hf-gray:#f4f4f6}
+    body{margin:0;font-family:'Poppins',sans-serif;background:var(--hf-light);color:var(--hf-dark);-webkit-font-smoothing:antialiased}
+    .hero{max-width:1200px;margin:2rem auto;padding:3rem;border-radius:12px;background:transparent;color:#fff}
+    /* interactive hero styles */
+    .hero.interactive-hero{position:relative;padding:2.5rem;background-image:url('libu.png');background-size:cover;background-position:center;}
+    .hero .hero-slides{position:relative;min-height:450px}
+    .hero .slide{position:absolute;inset:0;opacity:0;transform:translateY(6px);transition:opacity .45s, transform .45s;display:flex;flex-direction:column;justify-content:center}
+    .hero .slide.active{opacity:1;transform:translateY(0)}
+    .hero .slide{background-size:cover;background-position:center;padding:2rem;border-radius:12px}
+    .hero-controls{display:flex;gap:10px;align-items:center;justify-content:center;margin-top:1rem}
+    .hero-controls button{background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff;border-radius:8px;padding:6px 10px;cursor:pointer}
+    .hero-dots{display:flex;gap:8px}
+    .hero-dots button{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.28);border:none}
+    .hero-dots button.active{background:var(--hf-yellow)}
+    .content{max-width:1000px;margin:1.5rem auto;padding:0 1rem}
+    .section{background:var(--hf-light);padding:1.25rem;border-radius:10px;border:1px solid #eee}
+    .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-top:1rem}
+    .team-card{padding:1rem;border-radius:10px;background:var(--hf-gray);text-align:center}
+    .team-card img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: .6rem;
+      border: 4px solid var(--hf-yellow);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      background: #fff;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .contact-section{max-width:900px;margin:2rem auto;padding:1rem}
+    .contact-form{display:grid;gap:.6rem;background:#fff;padding:1rem;border-radius:12px;border:1px solid #eee}
+    .contact-form input,.contact-form textarea{padding:.75rem;border:1px solid #e6e6e6;border-radius:8px;font-family:inherit}
+    .contact-form button{background:var(--hf-yellow);border:none;padding:.75rem 1rem;border-radius:10px;font-weight:700;cursor:pointer}
+    a.btn{display:inline-block;margin-top:1rem;padding:.6rem 1rem;background:var(--hf-yellow);color:#060606;border-radius:999px;text-decoration:none;font-weight:700}
+
+    /* Asymmetrical two-column helper (matches WhatWeDo layout) */
+    .grid-asym{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;margin:1.25rem 0}
+    .grid-asym.reverse{grid-template-columns:1fr 1fr;direction:ltr}
+    .grid-asym .illustration{display:block;width:100%;border-radius:12px}
+    @media (max-width:820px){
+      .grid-asym{grid-template-columns:1fr;gap:18px}
+    }
+
+    /* Gallery sections */
+    .gallery-section{max-width:1200px;margin:3rem auto;padding:1rem}
+    .gallery-section h2{text-align:center;margin-bottom:2rem;font-size:2rem}
+    
+    /* Video gallery */
+    .video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:1.5rem}
+    .video-item{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+    .video-item video{width:100%;height:auto;display:block}
+    .video-item .video-caption{padding:1rem;text-align:center;font-weight:600}
+    
+    /* Photo gallery */
+    .photo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin-top:1.5rem}
+    .photo-item{position:relative;overflow:hidden;border-radius:10px;aspect-ratio:1;cursor:pointer;transition:transform 0.3s}
+    .photo-item:hover{transform:scale(1.05)}
+    .photo-item img{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* Responsive nav rules moved to /responsive.css */
+  </style>
+</head>
+<body>
+  <script src="/lang-switcher.js"></script>
+  <script src="/nav.js"></script>
+  <header>
+    <nav style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0.75rem 1.25rem;background:#050505;color:#fff">
+      <div style="display:flex;align-items:center;gap:.6rem">
+        <img src="logo.png" alt="logo" style="width:40px;height:40px;border-radius:50%;border:3px solid var(--hf-yellow);background:#000;padding:2px">
+        <span style="font-weight:700;color:#fff">Huit Fambo Foundation</span>
+      </div>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation" style="background:transparent;border:none;color:#fff;font-size:20px;cursor:pointer">☰</button>
+      <div class="nav-links" style="display:flex;gap:1rem;align-items:center">
+        <a href="index.html" style="color:#fff;text-decoration:none;font-weight:600">Home</a>
+        <a href="About.html" style="color:#fff;text-decoration:none;font-weight:600">About</a>
+        <a href="WhatWeDo.html" style="color:#fff;text-decoration:none;font-weight:600">What We Do</a>
+        <a href="Impact.html" style="color:#fff;text-decoration:none;font-weight:600">Impact</a>
+        <a href="library.html" style="color:#fff;text-decoration:none;font-weight:600">Library</a>
+        <a href="dance.html" style="color:#fff;text-decoration:none;font-weight:600">Dance</a>
+        <a href="waste.html" style="color:#fff;text-decoration:none;font-weight:600">Waste</a>
+        <a href="Donate.html" style="color:#fff;text-decoration:none;font-weight:600">Donate</a>
+        <a href="index.html#contact" style="color:#fff;text-decoration:none;font-weight:600">Contact</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="hero interactive-hero" aria-label="Hero slideshow">
+      <div class="hero-slides">
+        <div class="slide active" style="background-image:url('19.jpg');"></div>
+        <div class="slide" style="background-image:url('19.jpg');"></div>
+        <div class="slide" style="background-image:url('19.jpg');"></div>
+      </div>
+      <!-- Visual-only hero slides; keep hidden dots container for JS safety -->
+      <div class="hero-controls" style="position:relative">
+        <button class="prev" aria-label="Previous">‹</button>
+        <div class="hero-dots" aria-hidden="true" style="position:absolute;left:50%;transform:translateX(-50%);bottom:12px;display:none;"></div>
+        <button class="next" aria-label="Next">›</button>
+      </div>
+    </section>
+    <div class="content">
+      <div class="grid-asym">
+        <div class="section">
+          <h2>Offerings</h2>
+          <p>The library hosts reading circles, homework support, art sessions, and digital literacy introductions. Volunteers help with tutoring and occasional storytelling events.</p>
+          <h3>Weekly rhythm</h3>
+          <ul>
+            <li>After-school homework clubs</li>
+            <li>Reading buddies and phonics sessions</li>
+            <li>Art & expression workshops</li>
+          </ul>
+        </div>
+        <!-- Illustration removed to prioritize hero slideshow images -->
+      </div>
+
+      <div class="grid-asym reverse">
+          <div class="illustration" aria-hidden>
+            <!-- Replace this file with your own image for the left column -->
+            <img src="Clibu.png" alt="Library scene" style="width:100%;height:auto;border-radius:10px;display:block;object-fit:cover;" />
+          </div>
+        <div class="section">
+          <h2>Team</h2>
+          <div class="team-grid">
+            <div class="team-card">
+              <img src="Kelvin Juma.jpeg" alt="Kelvin Jumba">
+              <strong>Kelvin Jumba</strong>
+              <p>Library coordinator and tutor</p>
+              <p>Email: <a href="mailto:kelvinjumba952@gmail.com">kelvinjumba952@gmail.com</a></p>
+            </div>
+            <div class="team-card">
+              <img src="Zalika Ali.jpeg" alt="Zalika Ali">
+              <strong>Zalika Ali</strong>
+              <p>Assistant Librarian and tutor</p>
+              <p>Email: <a href="mailto:zalikaali423@gmail.com">zalikaali423@gmail.com</a></p>
+            </div>
+          </div>
+          <a class="btn" href="mailto:huitfambo01@gmail.com">Support the library</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Gallery Section -->
+    <section class="gallery-section">
+      <h2>Video Gallery</h2>
+      <p style="text-align:center;max-width:700px;margin:0 auto 2rem;color:#666">Explore moments from our library activities, events, and community programs</p>
+      <div class="video-grid">
+        <div class="video-item">
+          <video controls poster="eight.jpg">
+            <source src="edit.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="video-caption">Community Library Events</div>
+        </div>
+        <div class="video-item">
+          <video controls poster="20.jpg">
+            <source src="edit.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="video-caption">Reading Sessions</div>
+        </div>
+        <div class="video-item">
+          <video controls poster="eleven.jpg">
+            <source src="edit.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="video-caption">Educational Workshops</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section class="gallery-section">
+      <h2>Photo Gallery</h2>
+      <p style="text-align:center;max-width:700px;margin:0 auto 2rem;color:#666">Capturing the vibrant moments of learning, growth, and community at our library</p>
+      <div class="photo-grid">
+        <div class="photo-item">
+          <img src="15.jpg" alt="Library activity">
+        </div>
+        <div class="photo-item">
+          <img src="16.jpg" alt="Reading session">
+        </div>
+        <div class="photo-item">
+          <img src="17.jpg" alt="Community event">
+        </div>
+        <div class="photo-item">
+          <img src="18.jpg" alt="Educational program">
+        </div>
+        <div class="photo-item">
+          <img src="eight.jpg" alt="Library space">
+        </div>
+        <div class="photo-item">
+          <img src="eleven.jpg" alt="Learning together">
+        </div>
+        <div class="photo-item">
+          <img src="ten.jpg" alt="Workshop session">
+        </div>
+        <div class="photo-item">
+          <img src="three.jpg" alt="Community gathering">
+        </div>
+        <div class="photo-item">
+          <img src="nine.jpg" alt="Study time">
+        </div>
+        <div class="photo-item">
+          <img src="one.jpg" alt="Library programs">
+        </div>
+        <div class="photo-item">
+          <img src="four.jpg" alt="Youth activities">
+        </div>
+        <div class="photo-item">
+          <img src="five.jpg" alt="Learning environment">
+        </div>
+      </div>
+    </section>
+
+  </main>
+    <!-- Contact section (Formspree) -->
+    <section id="contact" class="contact-section">
+      <h2 style="margin-bottom:.4rem">Contact the Library</h2>
+      <p style="margin-top:0;margin-bottom:1rem">Questions about volunteering, donations, or visits? Send us a message.</p>
+      <form id="contactForm" class="contact-form" action="https://formspree.io/f/meoyzopl" method="POST">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Your email" required>
+        <input type="text" name="subject" placeholder="Subject">
+        <textarea name="message" rows="5" placeholder="Message" required></textarea>
+        <input type="hidden" name="_language" value="en">
+        <button type="submit">Send Message</button>
+        <div id="contactStatus" style="font-size:.95rem;color:#333;display:none;margin-top:.5rem"></div>
+      </form>
+    </section>
+
+  <footer style="text-align:center;padding:2rem;color:#666">© <span id="year"></span> Huit Fambo Foundation</footer>
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+  <script>
+    (function(){
+      function initHero(root){
+        const el=document.querySelector(root); if(!el) return;
+        const slides=Array.from(el.querySelectorAll('.slide'));
+        const prev=el.querySelector('.prev'), next=el.querySelector('.next'), dotsWrap=el.querySelector('.hero-dots');
+        let idx=0, timer=null;
+        if (dotsWrap) {
+          slides.forEach((s,i)=>{ const b=document.createElement('button'); b.addEventListener('click',()=>go(i)); if(i===0) b.classList.add('active'); dotsWrap.appendChild(b); });
+        }
+        function show(n){ slides.forEach(s=>s.classList.remove('active')); slides[n].classList.add('active'); Array.from(dotsWrap.children).forEach((d,i)=>d.classList.toggle('active', i===n)); }
+        function go(n){ idx=(n+slides.length)%slides.length; show(idx); reset(); }
+        function nextFn(){ go(idx+1); }
+        function prevFn(){ go(idx-1); }
+        function reset(){ clearInterval(timer); timer=setInterval(nextFn,4300); }
+        next && next.addEventListener('click', nextFn); prev && prev.addEventListener('click', prevFn);
+        el.addEventListener('mouseenter', ()=>clearInterval(timer)); el.addEventListener('mouseleave', reset);
+        reset();
+      }
+      initHero('.hero.interactive-hero');
+    })();
+  </script>
+  <script>
+    (function(){
+      const form = document.getElementById('contactForm');
+      const status = document.getElementById('contactStatus');
+      if(!form) return;
+      form.addEventListener('submit', async function(e){
+        e.preventDefault();
+        status.style.display = 'block';
+        status.textContent = 'Sending...';
+        const url = form.action;
+        const data = new FormData(form);
+        try{
+          const res = await fetch(url, { method: 'POST', headers: { 'Accept': 'application/json' }, body: data });
+          if(res.ok){
+            status.textContent = 'Thanks — your message was sent.';
+            form.reset();
+          } else {
+            const json = await res.json().catch(()=>null);
+            status.textContent = (json && json.error) ? json.error : 'There was a problem sending your message.';
+          }
+        }catch(err){
+          status.textContent = 'Network error. Please try again later.';
+        }
+      });
+    })();
+  </script>
+  <!-- Navigation behavior handled centrally by /nav.js -->
+</body>
+</html>
