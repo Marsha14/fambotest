@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Hreflang alternates (update with real language-specific URLs if available) -->
+  <link rel="alternate" hreflang="en" href="index.html?lang=en">
+  <link rel="alternate" hreflang="fr" href="index.html?lang=fr">
+  <link rel="alternate" hreflang="es" href="index.html?lang=es">
+  <link rel="alternate" hreflang="ar" href="index.html?lang=ar">
+  <link rel="alternate" hreflang="sw" href="index.html?lang=sw">
+  <link rel="alternate" hreflang="zh" href="index.html?lang=zh">
+  <link rel="alternate" hreflang="hi" href="index.html?lang=hi">
+  <link rel="alternate" hreflang="x-default" href="index.html">
+  <title>Huit Fambo Foundation | Huitfamble</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/responsive.css">
+  <style>
+    :root {
+      --hf-yellow: #f9d342;
+      --hf-dark: #0a0a0a;
+      --hf-light: #f7f5f2;
+      --hf-gray: #2c2c2c;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--hf-light);
+      color: var(--hf-dark);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.9);
+      border-bottom: 3px solid var(--hf-yellow);
+      backdrop-filter: blur(6px);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 3px solid var(--hf-yellow);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+      background: #000;
+    }
+
+    .logo-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .logo span {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 0.35rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2.5px;
+      background: var(--hf-yellow);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(8px, -8px);
+    }
+
+    .nav-drawer {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 10, 0.95);
+      border-bottom: 2px solid var(--hf-yellow);
+      flex-direction: column;
+      gap: 0;
+      padding: 0;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      z-index: 99;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .nav-drawer.active {
+      display: flex;
+      max-height: 500px;
+    }
+
+    .nav-drawer a {
+      color: #fff;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid rgba(249, 211, 66, 0.2);
+      transition: background 0.2s ease;
+    }
+
+    .nav-drawer a:hover {
+      background: rgba(249, 211, 66, 0.1);
+      color: var(--hf-yellow);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.75rem;
+      background: var(--hf-yellow);
+      color: var(--hf-dark);
+      font-weight: 700;
+      border-radius: 999px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 80vh;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      text-align: center;
+      padding: 4rem 2rem;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.65));
+      z-index: 0;
+    }
+
+    .hero-slides {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .hero-slides .slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      animation: heroFade 18s infinite;
+      transform: scale(1.05);
+    }
+
+    .hero-slides .slide:nth-child(1) {
+      background-image: url('28.jpg');
+      animation-delay: 0s;
+    }
+
+    .hero-slides .slide:nth-child(2) {
+      background-image: url('25.jpg');
+      animation-delay: 6s;
+    }
+
+    .hero-slides .slide:nth-child(3) {
+      background-image: url('19.jpg');
+      animation-delay: 12s;
+    }
+
+
+    @keyframes heroFade {
+      0% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      20% {
+        opacity: 1;
+      }
+      33% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.07);
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      font-size: 1.15rem;
+    }
+
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .section h2 {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--hf-gray);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .section h3 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .content-card {
+      background: #fff;
+      border: 1px solid #ececec;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .highlight {
+      color: var(--hf-yellow);
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      background: var(--hf-dark);
+      color: var(--hf-light);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      min-height: 220px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.85) 100%);
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-top: 56.25%;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+      background: #000;
+    }
+
+    .video-wrapper iframe,
+    .video-wrapper video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .contact-card {
+      background: var(--hf-dark);
+      color: #fff;
+      padding: 3rem;
+      border-radius: 20px;
+      text-align: center;
+    }
+
+    .quick-links {
+      background: var(--hf-dark);
+      color: #fff;
+      padding: 3rem 2rem;
+    }
+
+    .quick-links-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .quick-links-title {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--hf-yellow);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .quick-links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .quick-link-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .quick-link-item a {
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      display: inline-block;
+    }
+
+    .quick-link-item a:hover {
+      color: var(--hf-yellow);
+    }
+
+    .quick-link-item p {
+      font-size: 0.9rem;
+      color: #bbb;
+      margin: 0;
+    }
+
+    .partners-section {
+      padding: 4rem 2rem;
+      background: var(--hf-light);
+    }
+
+    .partners-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .partners-title {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--hf-gray);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .partners-heading {
+      font-size: 2rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      color: var(--hf-dark);
+    }
+
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 2rem;
+      align-items: center;
+      justify-items: center;
+    }
+
+    .partner-logo {
+      width: 150px;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .partner-logo:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .partner-logo img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    footer {
+      background: #050505;
+      color: #bbb;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0.75rem 1rem; }
+      .nav-links { gap: 0.75rem; font-size: 0.7rem; }
+      .logo-badge { width: 40px; height: 40px; }
+      .hero { min-height: 60vh; padding: 2rem 1rem; }
+      .hero h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); }
+      .hero p { font-size: 0.95rem; }
+      .section { padding: 2.5rem 1rem; }
+      .section h2 { font-size: 0.8rem; }
+      .section h3 { font-size: 1.5rem; }
+      .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+      .quick-links { padding: 2rem 1rem; }
+      .quick-links-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+      .partners-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem; }
+      .partner-logo { width: 120px; height: 120px; }
+      .btn { padding: 0.65rem 1.5rem; font-size: 0.85rem; }
+    }
+
+    @media (max-width: 480px) {
+      nav { padding: 0.5rem; justify-content: space-between; }
+      .hamburger { display: flex; }
+      .nav-links { display: none; }
+      .logo-badge { width: 35px; height: 35px; }
+      .logo span { font-size: 0.75rem; }
+      .hero { min-height: 50vh; padding: 1.5rem 0.75rem; }
+      .hero h1 { font-size: 1.5rem; }
+      .hero p { font-size: 0.85rem; }
+      .pill { padding: 0.3rem 0.75rem; font-size: 0.7rem; }
+      .section { padding: 1.75rem 0.75rem; }
+      .section h2 { font-size: 0.7rem; }
+      .section h3 { font-size: 1.25rem; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .quick-links { padding: 1.5rem 0.75rem; }
+      .quick-links-grid { grid-template-columns: 1fr; }
+      .partners-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+      .partner-logo { width: 100px; height: 100px; padding: 0.5rem; }
+      .btn { padding: 0.6rem 1.25rem; font-size: 0.75rem; }
+    }
+  
+  </style>
+</head>
+<body>
+  <script src="/lang-switcher.js"></script>
+  <script src="/nav.js"></script>
+  <header>
+    <nav>
+      <div class="logo">
+        <div class="logo-badge">
+          <img src="logo.png" alt="Huit Fambo Foundation logo">
+        </div>
+        <span>Huit Fambo Foundation</span>
+      </div>
+      <div class="nav-links">
+        <a href="About.html">About</a>
+        <a href="WhatWeDo.html">What We Do</a>
+        <a href="Impact.html">Impact</a>
+        <a href="library.html">Library</a>
+        <a href="dance.html">Dance</a>
+        <a href="waste.html">Waste</a>
+        <a href="Donate.html">Support Us</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+    <nav class="nav-drawer" id="navDrawer">
+      <a href="About.html">About</a>
+      <a href="WhatWeDo.html">What We Do</a>
+      <a href="Impact.html">Impact</a>
+      <a href="library.html">Library</a>
+      <a href="dance.html">Dance</a>
+      <a href="waste.html">Waste</a>
+      <a href="Donate.html">Support Us</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-slides">
+        <div class="slide"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+      </div>
+      <div class="hero-content">
+        <div class="pill">Youth Powered Change</div>
+        <h1>Creating Sustainable Futures Through Dance & Action</h1>
+        <p>Huit Fambo Foundation is a youth-led movement from Kibera using the power of dance, mentorship, and environmental conservation to transform lives and inspire bold community action.</p>
+        <button class="btn">Join the Movement</button>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <h2>ABOUT US</h2>
+      <div class="content-card">
+        <h3>We are a movement for change.</h3>
+        <p>Huit Fambo Foundation is a youth-led community organization based in Kibera, using the power of dance, mentorship, and environmental action to transform lives and build a more sustainable future.</p>
+        <p>We are more than a dance crew—we are a movement for change.</p>
+      </div>
+    </section>
+
+    <section id="who" class="section">
+      <h2>WHO WE ARE</h2>
+      <div class="grid grid-2">
+        <div class="content-card">
+          <h3>Passion Meets Purpose</h3>
+          <p>We are a passionate group of young people committed to empowering the youth, creating safe spaces, and tackling the social and environmental challenges affecting our community.</p>
+          <p>Through creativity, advocacy, and hands-on community engagement, we strive to inspire long-lasting impact.</p>
+        </div>
+        <div class="content-card">
+          <h3>Contact</h3>
+          <p>Have an idea, want to collaborate, or support our work?</p>
+          <p><strong>Email:</strong> <a href="mailto:huitfambo01@gmail.com">huitfambo01@gmail.com</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="section">
+      <h2>GALLERY OF WORK</h2>
+      <h3>Scenes from our movement</h3>
+      <div class="gallery-grid">
+        <!-- School Gallery Images Start -->
+        <h4 style="grid-column: 1/-1; margin: 1em 0 0.5em 0;">School Gallery</h4>
+        <div style="display: contents;">
+        <figure class="gallery-item">
+          <img src="i1.JPG" alt="School Image 1">
+        </figure>
+        <figure class="gallery-item">
+          <img src="i2.JPG" alt="School Image 2">
+        </figure>
+        <figure class="gallery-item">
+          <img src="i3.JPG" alt="School Image 3">
+        </figure>
+        <figure class="gallery-item">
+          <img src="i4.JPG" alt="School Image 4">
+        </figure>
+        <figure class="gallery-item">
+          <img src="i5.JPG" alt="School Image 5">
+        </figure>
+        <figure class="gallery-item">
+          <img src="i6.JPG" alt="School Image 6">
+        </figure>
+        <figure class="gallery-item">
+          <img src="i7.JPG" alt="School Image 7">
+        </figure>
+        <figure class="gallery-item">
+          <img src="i8.JPG" alt="School Image 8">
+        </figure>
+        <figure class="gallery-item">
+          <img src="i9.JPG" alt="School Image 9">
+        </figure>
+        <figure class="gallery-item">
+          <img src="i10.JPG" alt="School Image 10">
+        </figure>
+           <figure class="gallery-item">
+             <img src="i11.JPG" alt="School Image 11">
+           </figure>
+           <figure class="gallery-item">
+             <img src="i12.JPG" alt="School Image 12">
+           </figure>
+           <figure class="gallery-item">
+             <img src="i13.JPG" alt="School Image 13">
+           </figure>
+           <figure class="gallery-item">
+             <img src="i14.JPG" alt="School Image 14">
+           </figure>
+           <figure class="gallery-item">
+             <img src="i15.JPG" alt="School Image 15">
+           </figure>
+        </div>
+        <!-- School Gallery Images End -->
+      </div>
+    </section>
+
+    <section id="video" class="section">
+      <h2>VIDEO</h2>
+      <h3>See Huit Fambo in motion</h3>
+      <div class="content-card">
+        <p>Watch highlights from our Dance for Change shows, Waste Wise Saturdays, mentorship circles, and library sessions.</p>
+        <div class="video-wrapper">
+          <!-- Replace the src below with your own YouTube embed link or local video file -->
+          <iframe src="https://www.youtube.com/watch?v=7CbYUedAIHA&t=52s" title="Huit Fambo Foundation video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section id="mission" class="section">
+      <h2>OUR MISSION</h2>
+      <div class="content-card">
+        <h3>Empower. Reform. Sustain.</h3>
+        <p>Our mission is to empower and reform the youth by providing a safe, nurturing, and creative environment.</p>
+        <p>Through the transformative power of dance, we aim to raise awareness, educate, advocate, and give a voice to those unheard.</p>
+        <p>We are equally committed to environmental conservation through waste collection, sorting, and recycling initiatives.</p>
+        <p class="highlight">Together, we can build a brighter future for youth and a sustainable world for all.</p>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="contact-card">
+        <p class="pill">Take Action</p>
+        <h3>Ready to Support Huitfambo?</h3>
+        <p>Partner with us, volunteer, or sponsor our initiatives to help youth thrive through dance, mentorship, and environmental action.</p>
+
+        <div style="display:grid;gap:.6rem;max-width:740px;margin-top:1rem">
+          <p><strong>Phone number:</strong> <a href="tel:+254720200023">0720 200023</a></p>
+          <p><strong>Physical address:</strong> Woodvale Place, Woodvale Grove, Arnold Plaza, Nairobi</p>
+
+          <div style="width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:8px;border:1px solid #e6e6e6">
+            <iframe src="https://www.google.com/maps?q=PRP3+MG+Nairobi&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+
+          <div>
+            <strong>Business hours</strong>
+            <ul style="margin:0.4rem 0 0 1.1rem;padding:0;color:inherit">
+              <li>Mon–Fri: 09:00 – 17:00</li>
+              <li>Sat: 10:00 – 14:00</li>
+              <li>Sun: Closed</li>
+            </ul>
+          </div>
+
+          <a class="btn" href="mailto:huitfambo01@gmail.com">Email Us</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick-links">
+      <div class="quick-links-container">
+        <h2 class="quick-links-title">Quick Links</h2>
+        <div class="quick-links-grid">
+          <div class="quick-link-item">
+            <a href="About.html">About Us</a>
+            <p>Learn more about our foundation</p>
+          </div>
+          <div class="quick-link-item">
+            <a href="WhatWeDo.html">What We Do</a>
+            <p>Explore our initiatives and programs</p>
+          </div>
+          <div class="quick-link-item">
+            <a href="Impact.html">Impact So Far</a>
+            <p>See the difference we've made</p>
+          </div>
+          <div class="quick-link-item">
+            <a href="Donate.html">Support Us</a>
+            <p>Help us continue our mission</p>
+          </div>
+          <div class="quick-link-item">
+            <a href="mailto:huitfambo01@gmail.com">Contact</a>
+            <p>Get in touch with our team</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="partners-section">
+      <div class="partners-container">
+        <h2 class="partners-title">Our Partners</h2>
+        <h3 class="partners-heading">We are grateful for our partners</h3>
+        <div class="partners-grid">
+          <div class="partner-logo">
+            <a href="https://chezachezadance.org/" target="_blank">
+              <img src="chezacheza.png" alt="Partner 1 Logo">
+            </a>
+          </div>
+          <div class="partner-logo">
+            <a href="https://www.lionsclubs.org/en" target="_blank">
+              <img src="masaku.png" alt="Partner 2 Logo">
+            </a>
+          </div>
+          <div class="partner-logo">
+            <a href="https://www.voiceofdagoretti.org/" target="_blank">
+              <img src="voice.png" alt="Partner 3 Logo">
+            </a>
+          </div>
+          <div class="partner-logo">
+            <a href="https://t4bfoundation.org/" target="_blank">
+              <img src="together.png" alt="Partner 4 Logo">
+            </a>
+          </div>
+          <div class="partner-logo">
+            <a href="https://www.unifreelancers.work" target="_blank">
+              <img src="original logo.png" alt="Partner 5 Logo">
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section supervisors-section">
+      <h2>PROJECT SUPERVISORS</h2>
+      <h3>Members supervising these activities</h3>
+      <div class="content-card">
+        <ul>
+          <li><strong>Bravin Odhiambo</strong> — Founder and CEO</li>
+          <li><strong>Duncun Seda</strong> — CO-Founder</li>
+          <li><strong>Kevin Malubi</strong> — Project Manager</li>
+          <li><strong>John Ocholla</strong> — Transport and Logistics Supervisor</li>
+          <li><strong>Brenda Omondi</strong> — Treasurer</li>
+          <li><strong>Telvinch Imani</strong> — Design and Social Media Manager</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Huit Fambo Foundation. Kibera, Nairobi | Designed By UNI Freelancers Foundation.
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script src="/nav.js"></script>
+</body>
+</html>
+

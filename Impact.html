@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Hreflang alternates (update with real language-specific URLs if available) -->
+  <link rel="alternate" hreflang="en" href="Impact.html?lang=en">
+  <link rel="alternate" hreflang="fr" href="Impact.html?lang=fr">
+  <link rel="alternate" hreflang="es" href="Impact.html?lang=es">
+  <link rel="alternate" hreflang="ar" href="Impact.html?lang=ar">
+  <link rel="alternate" hreflang="sw" href="Impact.html?lang=sw">
+  <link rel="alternate" hreflang="zh" href="Impact.html?lang=zh">
+  <link rel="alternate" hreflang="hi" href="Impact.html?lang=hi">
+  <link rel="alternate" hreflang="x-default" href="Impact.html">
+  <title>Impact | Huit Fambo Foundation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/responsive.css">
+  <style>
+    /* Gallery styles matching index.html for consistent, smaller gallery items */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      background: #fff;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      min-height: 220px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      display: block;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.85) 100%);
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-top: 56.25%;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+      background: #000;
+    }
+
+    .video-wrapper iframe,
+    .video-wrapper video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+    }
+    :root {
+      --hf-yellow: #f9d342;
+      --hf-dark: #0a0a0a;
+      --hf-light: #f7f5f2;
+      --hf-gray: #2c2c2c;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--hf-light);
+      color: var(--hf-dark);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.95);
+      border-bottom: 3px solid var(--hf-yellow);
+      backdrop-filter: blur(6px);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 3px solid var(--hf-yellow);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+      background: #000;
+    }
+
+    .logo-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .logo span {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links a {
+      color: #fff;
+      position: relative;
+      padding-bottom: 0.25rem;
+    }
+
+    .nav-links a.active::after,
+    .nav-links a:hover::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      background: var(--hf-yellow);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.75rem;
+      background: var(--hf-yellow);
+      color: var(--hf-dark);
+      font-weight: 700;
+      border-radius: 999px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-outline {
+      border: 2px solid var(--hf-yellow);
+      background: transparent;
+      color: var(--hf-yellow);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 60vh;
+      padding: 5rem 2rem;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      text-align: center;
+      background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.65)),
+        url('eleven.jpg') center/cover;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 4vw, 3.8rem);
+      margin-bottom: 1rem;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      background: var(--hf-yellow);
+      color: var(--hf-dark);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .section h2 {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--hf-gray);
+      font-size: 1rem;
+    }
+
+    .section h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      margin-top: 2rem;
+    }
+
+    .stat-card {
+      background: #0e0e0e;
+      color: var(--hf-light);
+      padding: 2.5rem 1.5rem;
+      border-radius: 18px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      box-shadow: 0 25px 35px rgba(0,0,0,0.25);
+    }
+
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(249, 211, 66, 0.2);
+      border-radius: 18px;
+      pointer-events: none;
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--hf-yellow);
+    }
+
+    .stat-label {
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 0.75rem;
+    }
+
+    .impact-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .impact-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 2rem;
+      border: 1px solid #eee;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    }
+
+    .impact-card h4 {
+      margin-top: 0;
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-top: 56.25%;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+      background: #000;
+    }
+
+    .video-wrapper iframe,
+    .video-wrapper video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .story {
+      background: var(--hf-dark);
+      color: #fff;
+      border-radius: 20px;
+      padding: 3rem;
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .story small {
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--hf-yellow);
+    }
+
+    .donate-section {
+      background: linear-gradient(135deg, #0b0b0b, #1f1f1f);
+      color: var(--hf-light);
+      border-radius: 24px;
+      padding: 3rem;
+      text-align: center;
+      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.35);
+    }
+
+    .donate-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin: 1.5rem 0;
+    }
+
+    .donate-pill {
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 0.6rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .quick-links {
+      background: var(--hf-dark);
+      color: #fff;
+      padding: 3rem 2rem;
+    }
+
+    .quick-links-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .quick-links-title {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--hf-yellow);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .quick-links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .quick-link-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .quick-link-item a {
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      display: inline-block;
+    }
+
+    .quick-link-item a:hover {
+      color: var(--hf-yellow);
+    }
+
+    .quick-link-item p {
+      font-size: 0.9rem;
+      color: #bbb;
+      margin: 0;
+    }
+
+    footer {
+      background: #050505;
+      color: #bbb;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0.75rem 1rem; }
+      .nav-links { gap: 0.75rem; font-size: 0.7rem; }
+      .logo-badge { width: 40px; height: 40px; }
+      .hero { min-height: 50vh; padding: 2rem 1rem; }
+      .hero h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); }
+      .section { padding: 2rem 1rem; }
+      .section h2 { font-size: 0.8rem; }
+      .section h3 { font-size: 1.4rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .stat-number { font-size: 2rem; }
+      .impact-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+      .donate-section { padding: 2rem 1rem; }
+      .quick-links { padding: 2rem 1rem; }
+      .quick-links-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+      .btn { padding: 0.65rem 1.5rem; font-size: 0.85rem; }
+    }
+
+    @media (max-width: 480px) {
+      nav { flex-direction: column; gap: 0.75rem; padding: 0.5rem; }
+      .nav-links { gap: 0.4rem; font-size: 0.6rem; flex-wrap: wrap; justify-content: center; }
+      .logo-badge { width: 35px; height: 35px; }
+      .logo span { font-size: 0.75rem; }
+      .hero { min-height: 45vh; padding: 1.5rem 0.75rem; }
+      .hero h1 { font-size: 1.3rem; }
+      .hero p { font-size: 0.8rem; }
+      .pill { padding: 0.25rem 0.65rem; font-size: 0.65rem; }
+      .section { padding: 1.5rem 0.75rem; }
+      .section h2 { font-size: 0.65rem; }
+      .section h3 { font-size: 1.1rem; }
+      .stats-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+      .stat-number { font-size: 1.8rem; }
+      .impact-grid { grid-template-columns: 1fr; }
+      .donate-section { padding: 1.5rem 0.75rem; }
+      .donate-options { flex-direction: column; gap: 0.5rem; }
+      .donate-pill { font-size: 0.75rem; }
+      .quick-links { padding: 1.5rem 0.75rem; }
+      .quick-links-grid { grid-template-columns: 1fr; }
+      .btn { padding: 0.6rem 1.2rem; font-size: 0.75rem; }
+    }
+    /* Mobile hamburger + drawer styles */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 0.35rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2.5px;
+      background: var(--hf-yellow);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(8px, -8px); }
+
+    .nav-drawer {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 10, 0.95);
+      border-bottom: 2px solid var(--hf-yellow);
+      flex-direction: column;
+      gap: 0;
+      padding: 0;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      z-index: 99;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .nav-drawer.active { display: flex; max-height: 500px; }
+
+    .nav-drawer a { color: #fff; padding: 1rem 2rem; border-bottom: 1px solid rgba(249,211,66,0.12); }
+
+  </style>
+</head>
+<body>
+  <script src="/lang-switcher.js"></script>
+  <header>
+    <nav>
+      <div class="logo">
+        <div class="logo-badge">
+          <img src="logo.png" alt="Huit Fambo Foundation logo">
+        </div>
+        <span>Huit Fambo Foundation</span>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="About.html">About</a>
+        <a href="WhatWeDo.html">What We Do</a>
+        <a class="active" href="Impact.html">Impact</a>
+        <a href="library.html">Library</a>
+        <a href="dance.html">Dance</a>
+        <a href="waste.html">Waste</a>
+        <a href="Donate.html">Support Us</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="hamburger" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+    <nav class="nav-drawer" aria-label="Mobile navigation">
+      <a href="index.html">Home</a>
+      <a href="About.html">About</a>
+      <a href="WhatWeDo.html">What We Do</a>
+      <a href="Impact.html">Impact</a>
+      <a href="library.html">Library</a>
+      <a href="mentorship.html">Mentorship</a>
+      <a href="dance.html">Dance</a>
+      <a href="waste.html">Waste</a>
+      <a href="Donate.html">Support Us</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <span class="pill">Impact Live</span>
+        <h1>Numbers that tell our story</h1>
+        <p>From waste-free streets to confident dancers and mentored students, every program leaves a mark. Explore how Huit Fambo Foundation is reshaping Kibera through youth-led action.</p>
+        <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+          <a href="#stats" class="btn">See Impact</a>
+          <a href="#donate" class="btn btn-outline">Support Today</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact Gallery Section Start -->
+    <section id="gallery" class="section">
+      <h2>Impact Gallery</h2>
+      <h3>Photos & Videos from our Impact Initiatives</h3>
+      <div class="gallery-grid">
+        <!-- Photo placeholders (replace src with your image URLs) -->
+        <figure class="gallery-item"><img src="im1.JPG" alt="Impact photo 1"><figcaption class="gallery-caption">Work 1</figcaption></figure>
+        <figure class="gallery-item"><img src="im2.JPG" alt="Impact photo 2"><figcaption class="gallery-caption">Work 2</figcaption></figure>
+        <figure class="gallery-item"><img src="im3.JPG" alt="Impact photo 3"><figcaption class="gallery-caption">Work 3</figcaption></figure>
+        <figure class="gallery-item"><img src="im4.JPG" alt="Impact photo 4"><figcaption class="gallery-caption">Work 4</figcaption></figure>
+        <figure class="gallery-item"><img src="im5.JPG" alt="Impact photo 5"><figcaption class="gallery-caption">Work 5</figcaption></figure>
+        <figure class="gallery-item"><img src="im6.JPG" alt="Impact photo 6"><figcaption class="gallery-caption">Work 6</figcaption></figure>
+        <figure class="gallery-item"><img src="im7.JPG" alt="Impact photo 7"><figcaption class="gallery-caption">Work 7</figcaption></figure>
+        <figure class="gallery-item"><img src="im8.JPG" alt="Impact photo 8"><figcaption class="gallery-caption">Work 8</figcaption></figure>
+        <figure class="gallery-item"><img src="im9.JPG" alt="Impact photo 9"><figcaption class="gallery-caption">Work 9</figcaption></figure>
+        <figure class="gallery-item"><img src="im10.JPG" alt="Impact photo 10"><figcaption class="gallery-caption">Work 10</figcaption></figure>
+        <figure class="gallery-item"><img src="im11.JPG" alt="Impact photo 11"><figcaption class="gallery-caption">Work 11</figcaption></figure>
+        <figure class="gallery-item"><img src="im12.JPG" alt="Impact photo 12"><figcaption class="gallery-caption">Work 12</figcaption></figure>
+        <figure class="gallery-item"><img src="im13.JPG" alt="Impact photo 13"><figcaption class="gallery-caption">Work 13</figcaption></figure>
+        <figure class="gallery-item"><img src="im14.JPG" alt="Impact photo 14"><figcaption class="gallery-caption">Work 14</figcaption></figure>
+        <figure class="gallery-item"><img src="im15.JPG" alt="Impact photo 15"><figcaption class="gallery-caption">Work 15</figcaption></figure>
+        <!-- Video placeholders (replace source src and poster with your file URLs) -->
+        <figure class="gallery-item">
+          <div class="video-wrapper">
+            <video controls poster="REPLACE_WITH_POSTER_01.jpg">
+              <source src="REPLACE_WITH_VIDEO_01.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <figcaption class="gallery-caption">Video 1</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <div class="video-wrapper">
+            <video controls poster="REPLACE_WITH_POSTER_02.jpg">
+              <source src="REPLACE_WITH_VIDEO_02.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <figcaption class="gallery-caption">Video 2</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <div class="video-wrapper">
+            <video controls poster="REPLACE_WITH_POSTER_03.jpg">
+              <source src="REPLACE_WITH_VIDEO_03.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <figcaption class="gallery-caption">Video 3</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <div class="video-wrapper">
+            <video controls poster="REPLACE_WITH_POSTER_04.jpg">
+              <source src="REPLACE_WITH_VIDEO_04.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <figcaption class="gallery-caption">Video 4</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <div class="video-wrapper">
+            <video controls poster="REPLACE_WITH_POSTER_05.jpg">
+              <source src="REPLACE_WITH_VIDEO_05.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <figcaption class="gallery-caption">Video 5</figcaption>
+        </figure>
+      </div>
+    </section>
+    <!-- Impact Gallery Section End -->
+
+    <section id="stats" class="section">
+      <h2>IMPACT DASHBOARD</h2>
+      <h3>Alive numbers that keep growing</h3>
+      <p>Our data is grounded in weekly program reports and partner tracking. Numbers update every quarter and celebrate both reach and depth.</p>
+      <div class="stats-grid">
+        <article class="stat-card">
+          <div class="stat-number" data-target="1400">0</div>
+          <p class="stat-label">Youth mentored</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-number" data-target="50">0</div>
+          <p class="stat-label">Households served weekly</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-number" data-target="850">0</div>
+          <p class="stat-label">Waste bags diverted</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-number" data-target="40">0</div>
+          <p class="stat-label">Children at our library</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>IMPACT IN ACTION</h2>
+      <h3>Stories from the ground</h3>
+      <div class="impact-grid">
+        <article class="impact-card">
+          <h4>Safe Mentorship Circles</h4>
+          <p>Weekly sessions across three schools equip teens with life skills, menstrual health knowledge, and leadership confidence.</p>
+        </article>
+        <article class="impact-card">
+          <h4>Waste Wise Saturdays</h4>
+          <p>Teams sweep through 50 households, collecting, sorting, and selling recyclables to fund school supplies and sanitary kits.</p>
+        </article>
+        <article class="impact-card">
+          <h4>Dance for Change Tours</h4>
+          <p>Our dance crew performs narrative pieces spotlighting gender equality, inspiring thousands during community forums.</p>
+        </article>
+        <article class="impact-card">
+          <h4>Library & Safe Space</h4>
+          <p>In partnership with Masaku Lions Club, 35–40 children access books, tutoring, and counseling every day.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>VIDEO</h2>
+      <h3>Impact you can see</h3>
+      <div class="story">
+        <div>
+          <p>Experience Huit Fambo’s work in motion—from Dance for Change performances to Waste Wise Saturdays and mentorship sessions.</p>
+        </div>
+        <div class="video-wrapper">
+          <!-- Replace the src below with your own YouTube embed link or local video file -->
+          <iframe src="https://youtu.be/7CbYUedAIHA?si=4xbsfj1EYzh99SD3" title="Huit Fambo Impact video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="story">
+        <small>Spotlight</small>
+        <h3>"Before Huit Fambo, I skipped school to avoid bullying. The mentorship circle helped me speak up and now I'm a prefect leading clean-up drives." – Michelle, Form 2</h3>
+        <p>Michelle’s story mirrors hundreds of young people who now connect their creativity with civic responsibility. Our ecosystem ensures that once a youth joins Huit Fambo, they stay supported through mentorship, expression, and economic opportunities.</p>
+      </div>
+    </section>
+
+    <section id="donate" class="section">
+      <div class="donate-section">
+        <p class="pill" style="margin-bottom:1rem;">Fuel the impact</p>
+        <h3>Your support powers clean streets, confident dancers, and resilient leaders.</h3>
+        <p>Select a giving lane or email us for custom partnerships.</p>
+        <div class="donate-options">
+          <div class="donate-pill">Sponsor a mentorship circle</div>
+          <div class="donate-pill">Fund sanitary kits</div>
+          <div class="donate-pill">Equip the library</div>
+          <div class="donate-pill">Back Dance for Change tours</div>
+        </div>
+        <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+          <a class="btn" href="Donate.html">Donate Online</a>
+          <a class="btn btn-outline" href="mailto:huitfambo01@gmail.com">Email huitfambo01@gmail.com</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick-links">
+    </section>
+
+    <section class="section supervisors-section">
+      <h2>PROJECT SUPERVISORS</h2>
+      <h3>Members supervising these activities</h3>
+      <div class="content-card">
+        <ul>
+          <li><strong>Bravin Odhiambo</strong> — Founder and CEO</li>
+          <li><strong>Duncun Seda</strong> — CO-Founder</li>
+          <li><strong>Kevin Malubi</strong> — Project Manager</li>
+          <li><strong>John Ocholla</strong> — Transport and Logistics Supervisor</li>
+          <li><strong>Brenda Omondi</strong> — Treasurer</li>
+          <li><strong>Telvinch Imani</strong> — Design and Social Media Manager</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="quick-links">
+      <div class="quick-links-container">
+        <h2 class="quick-links-title">Quick Links</h2>
+        <div class="quick-links-grid">
+          <div class="quick-link-item">
+            <a href="index.html">Home</a>
+            <p>Back to the homepage</p>
+          </div>
+          <div class="quick-link-item">
+            <a href="About.html">About</a>
+            <p>Learn about our story</p>
+          </div>
+          <div class="quick-link-item">
+            <a href="WhatWeDo.html">What We Do</a>
+            <p>Explore our programs</p>
+          </div>
+          <div class="quick-link-item">
+            <a href="Donate.html">Support Us</a>
+            <p>Help fund our work</p>
+          </div>
+          <div class="quick-link-item">
+            <a href="mailto:huitfambo01@gmail.com">Contact</a>
+            <p>Get in touch</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Huit Fambo Foundation. Kibera, Nairobi | Designed By UNI Freelancers Foundation.
+  </footer>
+
+  <script>
+    const yearEl = document.getElementById('year');
+    yearEl.textContent = new Date().getFullYear();
+
+    function animateValue(el, target) {
+      const duration = 1800;
+      const start = 0;
+      const startTime = performance.now();
+
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        el.textContent = Math.floor(progress * (target - start) + start);
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      }
+
+      requestAnimationFrame(update);
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const stat = entry.target;
+          const target = parseInt(stat.dataset.target, 10);
+          if (!stat.dataset.animated) {
+            animateValue(stat, target);
+            stat.dataset.animated = 'true';
+          }
+        }
+      });
+    }, { threshold: 0.4 });
+
+    document.querySelectorAll('.stat-number').forEach(stat => observer.observe(stat));
+  </script>
+  <script src="/nav.js"></script>
+</body>
+</html>
